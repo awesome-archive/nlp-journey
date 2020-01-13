@@ -22,18 +22,21 @@ class FastTextModel:
 
     # 训练模型
     def train(self):
-        if self.model_type == 'cbow':
-            return fasttext.cbow(self.train_file, self.model_path)
-        else:
-            return fasttext.skipgram(self.train_file, self.model_path)
+        model = fasttext.train_unsupervised(input=self.train_file, model=self.model_type)
+        model.save_model(self.model_path)
+        print(model.words)
+        return model
 
     # 返回词的向量
     def vector(self, word):
         return self.model[word]
 
+    def get_nearest_neighbors(self, word, k):
+        return self.model.get_nearest_neighbors(word, k)
+
     # 加载训练好的模型
     def load(self):
-        if os.path.exists(self.model_path + 'bin'):
+        if os.path.exists(self.model_path):
             return fasttext.load_model(self.model_path)
         else:
             return None

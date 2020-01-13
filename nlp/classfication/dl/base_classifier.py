@@ -1,20 +1,20 @@
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras.engine.saving import load_model
-from keras.datasets import imdb
-from keras.layers import Input, Dense, Embedding, Flatten, Lambda
-from keras.models import Model
 import os
+import pickle
+from collections import Counter
 
-from keras.utils import to_categorical
+import numpy as np
+import tensorflow as tf
+from gensim.models import KeyedVectors
+from keras_preprocessing.sequence import pad_sequences
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.layers import Input, Dense, Embedding, Lambda
+from tensorflow.keras.models import Model
+from tensorflow.keras.models import load_model
+from tensorflow.keras.utils import to_categorical
 
 from nlp.utils.plot_model_history import plot
-import pickle
-from keras_preprocessing.sequence import pad_sequences
-import numpy as np
-from gensim.models import KeyedVectors
-import keras.backend as K
-from sklearn.model_selection import train_test_split
-from collections import Counter
 
 
 class TextClassifier:
@@ -37,7 +37,7 @@ class TextClassifier:
         else:
             self.vector_path = vector_path
             self.train_file_path = train_file_path
-            self.x_train, self.y_train, self.x_test, self.y_test, self.word_index= self.load_data()
+            self.x_train, self.y_train, self.x_test, self.y_test, self.word_index = self.load_data()
             self.maxlen = self.x_train.shape[1]
             _, _, self.embeddings = self.load_config()
             if len(self.embeddings) == 0:
@@ -53,7 +53,7 @@ class TextClassifier:
                       300,
                       weights=[self.embeddings],
                       trainable=False)(inputs)
-        x = Lambda(lambda t: K.mean(t, axis=1))(x)
+        x = Lambda(lambda t: tf.reduce_mean(t, axis=1))(x)
         x = Dense(128, activation='relu')(x)
         x = Dense(64, activation='relu')(x)
         x = Dense(16, activation='relu')(x)

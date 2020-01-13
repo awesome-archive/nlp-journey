@@ -1,7 +1,7 @@
-from keras import Model
-from keras.layers import Dropout, Dense, Embedding, BatchNormalization, CuDNNLSTM, Input, Bidirectional
+from tensorflow.keras import Model
+from tensorflow.keras.layers import *
 
-from .basic_classifier import TextClassifier
+from .base_classifier import TextClassifier
 
 
 class TextRnnClassifier(TextClassifier):
@@ -14,7 +14,7 @@ class TextRnnClassifier(TextClassifier):
                       300,
                       weights=[self.embeddings],
                       trainable=False)(inputs)
-        x = Bidirectional(CuDNNLSTM(150))(x)
+        x = Bidirectional(LSTM(150))(x)
         x = BatchNormalization()(x)
         x = Dense(128, activation="relu")(x)
         x = Dropout(0.25)(x)

@@ -54,7 +54,7 @@ class LdaTopicModel(object):
 
     def load_config(self):
         with open(self.config_path, 'rb') as file:
-            dictionary, tf_idf = pickle.load(self.config_path)
+            dictionary, tf_idf = pickle.load(file)
         return dictionary, tf_idf
 
     def preprocess(self):

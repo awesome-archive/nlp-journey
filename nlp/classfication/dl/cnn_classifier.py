@@ -1,8 +1,8 @@
-from keras import Model
-from keras.layers import Input, Concatenate, Dropout, Dense, Embedding, Conv1D, GlobalMaxPooling1D
-from keras.regularizers import l2
+from tensorflow.keras import Model
+from tensorflow.keras.layers import Input, Concatenate, Dropout, Dense, Embedding, Conv1D, GlobalMaxPooling1D
+from tensorflow.keras.regularizers import l2
 
-from .basic_classifier import TextClassifier
+from .base_classifier import TextClassifier
 
 
 class TextCnnClassifier(TextClassifier):

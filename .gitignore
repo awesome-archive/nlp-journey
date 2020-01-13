@@ -6,3 +6,5 @@ model/
 logs/
 runs/
 .vscode/
+.DS_Store
+*.gz

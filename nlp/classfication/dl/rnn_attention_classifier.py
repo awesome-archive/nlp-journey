@@ -1,8 +1,8 @@
-from keras import Model
+from tensorflow.keras import Model
 
 from nlp.layers.attention import Attention
-from .basic_classifier import TextClassifier
-from keras.layers import Dropout, Dense, Embedding, Input, Bidirectional, LSTM
+from .base_classifier import TextClassifier
+from tensorflow.keras.layers import Dropout, Dense, Embedding, Input, Bidirectional, LSTM
 
 
 class TextRNNAttentionClassifier(TextClassifier):
@@ -25,4 +25,4 @@ class TextRNNAttentionClassifier(TextClassifier):
         return model
 
     def train(self, batch_size=512, epochs=20):
-        super(TextRNNAttentionClassifier,self).train(128,3)
+        super(TextRNNAttentionClassifier, self).train(128, 3)

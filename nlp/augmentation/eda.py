@@ -7,7 +7,7 @@ random.seed(2019)
 
 
 def load_stopwords(stop_path):
-    with open(stop_path, 'r',encoding='utf-8') as f:
+    with open(stop_path, 'r', encoding='utf-8') as f:
         stop_words = f.readlines()
         stop_words = [stop_word.strip() for stop_word in stop_words]
     return stop_words
@@ -49,13 +49,13 @@ class EDA:
         synonyms_ = []
         counter = 0
         while len(synonyms_) < 1:
-            random_word = new_words[random.randint(0, len(new_words)-1)]
+            random_word = new_words[random.randint(0, len(new_words) - 1)]
             synonyms_ = self.get_synonyms(random_word)
             counter += 1
             if counter >= 10:
                 return
         random_synonym = random.choice(synonyms_)
-        random_idx = random.randint(0, len(new_words)-1)
+        random_idx = random.randint(0, len(new_words) - 1)
         new_words.insert(random_idx, random_synonym)
 
     def random_swap(self, words, n):
@@ -65,11 +65,11 @@ class EDA:
         return new_words
 
     def swap_word(self, new_words):
-        random_idx_1 = random.randint(0, len(new_words)-1)
+        random_idx_1 = random.randint(0, len(new_words) - 1)
         random_idx_2 = random_idx_1
         counter = 0
         while random_idx_2 == random_idx_1:
-            random_idx_2 = random.randint(0, len(new_words)-1)
+            random_idx_2 = random.randint(0, len(new_words) - 1)
             counter += 1
             if counter > 3:
                 return new_words
@@ -88,19 +88,19 @@ class EDA:
                 new_words.append(word)
 
         if len(new_words) == 0:
-            rand_int = random.randint(0, len(words)-1)
+            rand_int = random.randint(0, len(words) - 1)
             return [words[rand_int]]
 
         return new_words
 
-    def fit_transfrom(self, sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9):
+    def fit_transform(self, sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9):
         seg_list = jieba.cut(sentence)
         seg_list = " ".join(seg_list)
         words = list(seg_list.split())
         num_words = len(words)
 
         augmented_sentences = []
-        num_new_per_technique = int(num_aug/4)+1
+        num_new_per_technique = int(num_aug / 4) + 1
         n_sr = max(1, int(alpha_sr * num_words))
         n_ri = max(1, int(alpha_ri * num_words))
         n_rs = max(1, int(alpha_rs * num_words))

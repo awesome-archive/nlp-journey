@@ -1,7 +1,7 @@
-from keras import Input, Model
-from keras.layers import Lambda, Dense
-from keras.optimizers import Adam
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras import Input, Model
+from tensorflow.keras.layers import Lambda, Dense
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from keras_bert import load_trained_model_from_checkpoint, Tokenizer
 import codecs
 from sklearn.model_selection import train_test_split

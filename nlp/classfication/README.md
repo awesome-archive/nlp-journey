@@ -56,6 +56,8 @@ print(model.predict_result('this is very bad movie, i hate it'))
 
 ### 8) RCNN
 
+### 9) bert
+
 
 
 * 实验结果

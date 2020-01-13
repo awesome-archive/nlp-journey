@@ -4,9 +4,9 @@ from collections import Counter
 import os
 
 import numpy as np
-from keras.layers import Embedding, Bidirectional, LSTM
-from keras.models import Sequential
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.layers import Embedding, Bidirectional, LSTM
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from keras_contrib import losses, metrics
 from keras_contrib.layers import CRF
 import logging

@@ -11,6 +11,7 @@ log = Log(logging.INFO)
 
 class FastTextClassifier:
     """
+    需要安装包：pip install fasttext
     利用fasttext来对文本进行分类
     """
 
@@ -55,9 +56,9 @@ class FastTextClassifier:
         :return: 分类后的结果
         """
         if isinstance(text, list):
-            output = self.model.predict(text)
+            output = self.model.predict(text, )
         else:
-            output = self.model.predict([text])
+            output = self.model.predict([text], )
         print('predict:', output)
         return output
 
@@ -68,7 +69,7 @@ class FastTextClassifier:
         :return:
         """
         if os.path.exists(self.model_path + '.bin'):
-            return fasttext.load_model(model_path + '.bin', label_prefix='__label__')
+            return fasttext.load_model(model_path + '.bin')
         else:
             return None
 

@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 def plot(model_trained):
     # Plot accuracy
-    plt.plot(model_trained.history['acc'])
-    plt.plot(model_trained.history['val_acc'])
+    plt.plot(model_trained.history['accuracy'])
+    plt.plot(model_trained.history['val_accuracy'])
     plt.title('Model Accuracy')
     plt.ylabel('Accuracy')
     plt.xlabel('Epoch')

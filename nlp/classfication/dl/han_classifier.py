@@ -1,8 +1,8 @@
-from keras import Input, Model
-from keras.layers import Embedding, Bidirectional, CuDNNLSTM, TimeDistributed, Dense, Reshape
+from tensorflow.keras import Input, Model
+from tensorflow.keras.layers import Embedding, Bidirectional, CuDNNLSTM, TimeDistributed, Dense, Reshape
 
 from nlp.layers.attention import Attention
-from .basic_classifier import TextClassifier
+from .base_classifier import TextClassifier
 
 
 class TextHanClassifier(TextClassifier):

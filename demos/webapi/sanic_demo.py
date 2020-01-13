@@ -1,10 +1,10 @@
 from sanic import Sanic
 from sanic.response import json
 
-
 # 启动web
 app = Sanic()
 model = None
+
 
 @app.route("/predict", methods=['POST'])
 async def predict(request):
@@ -20,7 +20,7 @@ async def predict(request):
 
     ans = answer[0]
 
-    return json({'category':ans})
+    return json({'category': ans})
 
 
 if __name__ == '__main__':
